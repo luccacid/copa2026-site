@@ -77,7 +77,8 @@
  <select id="selA" onchange="render()"></select> <span class="vs">×</span>
  <select id="selB" onchange="render()"></select>
  <button onclick="render()">Simular</button>
- <span class="muted">muda a seleção e o resultado já atualiza</span>
+ <button onclick="nextGame()" style="background:var(--card2);border:1px solid
+  var(--cyan);color:var(--cyan)">Próximo jogo &#9197;</button>
  <div id="result"></div>
 </div>
 
@@ -114,6 +115,17 @@ function tab(id){
   window.scrollTo({top: 0});
 }
 const flag = (t,s=24) => `<img class="flag" width="${s}" src="https://flagcdn.com/w40/${D.flag[t]||'un'}.png">`;
+
+function nextGame(){
+  const a = $('selA').value, b = $('selB').value;
+  const today = new Date().toISOString().slice(0,10);
+  const list = D.agenda.filter(x=>x[0]>=today);
+  const ag = list.length ? list : D.agenda;
+  const i = ag.findIndex(x => x[1]===a && x[2]===b);
+  const nx = ag[(i+1) % ag.length];
+  $('selA').value = nx[1]; $('selB').value = nx[2];
+  render(); tab('simular');
+}
 
 function getMatch(a, b){
   if (D.matches[`${a}|${b}`]) return [D.matches[`${a}|${b}`], false];
