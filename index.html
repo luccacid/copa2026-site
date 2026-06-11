@@ -11,9 +11,13 @@
    color:var(--txt);max-width:1020px;margin:0 auto;padding:22px 16px 60px}
  header h1{color:var(--gold);font-size:1.6em;margin:0}
  header .sub{color:var(--mut);font-size:.86em}
- nav{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 4px}
+ html{scroll-behavior:smooth}
+ nav{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 4px;position:sticky;top:0;
+   z-index:50;background:rgba(10,14,26,.92);backdrop-filter:blur(8px);
+   padding:9px 4px;border-radius:0 0 14px 14px}
  nav a{background:var(--card);padding:6px 13px;border-radius:18px;font-size:.84em;
-   color:var(--cyan);text-decoration:none}
+   color:var(--cyan);text-decoration:none;transition:all .15s}
+ nav a:hover{background:var(--card3)}
  h2{color:var(--cyan);font-size:.95em;margin:0 0 12px;text-transform:uppercase;
    letter-spacing:1.1px}
  a{color:inherit;text-decoration:none}
@@ -66,8 +70,10 @@
 <a href="#jogos">Calendário</a></nav>
 
 <div class="card" id="simular"><h2>Simular confronto</h2>
- <select id="selA"></select> <span class="vs">×</span>
- <select id="selB"></select> <button onclick="render()">Simular</button>
+ <select id="selA" onchange="render()"></select> <span class="vs">×</span>
+ <select id="selB" onchange="render()"></select>
+ <button onclick="render()">Simular</button>
+ <span class="muted">muda a seleção e o resultado já atualiza</span>
  <div id="result"></div>
 </div>
 
