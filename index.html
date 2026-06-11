@@ -18,7 +18,13 @@
    letter-spacing:1.1px}
  a{color:inherit;text-decoration:none}
  .card{background:var(--card);border:1px solid #1f2b4a;border-radius:16px;
-   padding:18px 20px;margin:16px 0}
+   padding:18px 20px;margin:16px 0;overflow-x:auto}
+ @media (max-width:640px){
+   body{padding:12px 8px 40px} header h1{font-size:1.22em}
+   .card{padding:13px 12px} td,th{padding:5px 6px;font-size:.93em}
+   .bar{height:36px;line-height:36px;font-size:.82em}
+   select,button{font-size:.95em;padding:8px 10px}
+ }
  .flag{border-radius:3px;vertical-align:-4px}
  select,button{font-size:1em;padding:10px 13px;border-radius:11px;border:1px solid
    #2c3c66;background:var(--card2);color:var(--txt)}
