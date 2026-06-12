@@ -97,6 +97,7 @@
 <a data-t="grupos" onclick="tab('grupos')">Grupos</a>
 <a data-t="jogos" onclick="tab('jogos')">&#128197; Calendário</a></nav>
 
+<div id="liveBanner"></div>
 <div class="card" id="simular"><h2>Simular confronto</h2>
  <select id="selA" onchange="render()"></select> <span class="vs">×</span>
  <select id="selB" onchange="render()"></select>
@@ -160,6 +161,21 @@ async function pollLive(){
         detail:c.status.type.shortDetail, live:c.status.type.state==="in"};
     });
     renderLive();
+    // faixa AO VIVO AGORA no topo (clicavel)
+    const liveNow = Object.values(espnScores).find(s => s.live);
+    $("liveBanner").innerHTML = liveNow ? `
+     <div class="card" style="border-color:var(--red);display:flex;align-items:center;
+       gap:14px;flex-wrap:wrap;cursor:pointer" onclick="$('selA').value='${liveNow.t1}';
+       $('selB').value='${liveNow.t2}';render();tab('simular')">
+      <span style="font-weight:800;font-size:.85em;letter-spacing:1px;color:var(--red)">
+       &#128308; AO VIVO AGORA</span>
+      <span style="display:flex;align-items:center;gap:9px;font-weight:700;font-size:1.05em">
+       ${flag(liveNow.t1,26)} ${liveNow.t1}
+       <b style="color:var(--gold);font-size:1.2em">${liveNow.s1}–${liveNow.s2}</b>
+       ${liveNow.t2} ${flag(liveNow.t2,26)}</span>
+      <span class="muted">${liveNow.detail}</span>
+      <span style="margin-left:auto;color:var(--cyan);font-size:.86em">ver previsão &#8594;</span>
+     </div>` : "";
     document.querySelectorAll(".match[data-pair]").forEach(card => {
       const s = espnScores[card.dataset.pair];
       if (!s) return;
