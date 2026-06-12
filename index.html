@@ -291,7 +291,7 @@ function init(){
     const [m] = getMatch(x[1], x[2]);
     const p = m ? m.p : [.34,.32,.34];
     const real = D.results[`${x[0]}|${x[1]}|${x[2]}`];
-    const prev = m ? `${Math.ceil(m.l[0]-1e-9)}x${Math.ceil(m.l[1]-1e-9)}` : "";
+    const prev = m ? `${Math.round(m.l[0])}x${Math.round(m.l[1])}` : "";
     let foot;
     if (real){
       let lab = '<b style="color:var(--red)">errou</b>';
