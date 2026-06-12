@@ -1,0 +1,11 @@
+name: keep-alive do Render
+on:
+  schedule:
+    - cron: "*/12 12-23 * * *"   # a cada 12 min, 09:00-20:59 de Brasília
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: acorda o servidor do bolão
+        run: curl -s -o /dev/null -m 60 https://copa2026-471p.onrender.com/live_all.json || true
